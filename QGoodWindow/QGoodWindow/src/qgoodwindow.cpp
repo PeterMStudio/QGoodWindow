@@ -796,13 +796,16 @@ int QGoodWindow::execDialog(QDialog *dialog, QGoodWindow *child_gw, QGoodWindow 
 
 void QGoodWindow::setAppDarkTheme()
 {
-    qApp->setStyle(new DarkStyle());
-    qApp->style()->setObjectName("fusion");
+    setAppTheme(new DarkStyle());
 }
 
 void QGoodWindow::setAppLightTheme()
 {
-    qApp->setStyle(new LightStyle());
+    setAppTheme(new LightStyle());
+}
+
+void QGoodWindow::setAppTheme(QProxyStyle *style){
+    qApp->setStyle(style);
     qApp->style()->setObjectName("fusion");
 }
 
@@ -1893,7 +1896,7 @@ bool QGoodWindow::event(QEvent *event)
 
         widget->installEventFilter(this);
         widget->setParent(bestParentForModalWindow(),
-                          (!is_file_dialog ? widget->windowFlags() : Qt::WindowFlags(0)));
+                          (!is_file_dialog ? widget->windowFlags() : Qt::WindowFlags(Qt::Widget)));
 
         break;
     }

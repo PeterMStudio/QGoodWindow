@@ -163,6 +163,9 @@ public:
     /** Set the app theme to the light theme. */
     static void setAppLightTheme();
 
+    /** Set the app theme by proxy style. */
+    static void setAppTheme(QProxyStyle *style);
+
     /** Get the global state holder. */
     static QGoodStateHolder *qGoodStateHolderInstance();
 

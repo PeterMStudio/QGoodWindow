@@ -23,6 +23,7 @@
 target_sources(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/src/qgoodwindow.cpp ${CMAKE_CURRENT_LIST_DIR}/src/qgoodwindow.h
     ${CMAKE_CURRENT_LIST_DIR}/src/qgoodstateholder.cpp ${CMAKE_CURRENT_LIST_DIR}/src/qgoodstateholder.h
+    ${CMAKE_CURRENT_LIST_DIR}/src/windowstylebase.cpp ${CMAKE_CURRENT_LIST_DIR}/src/windowstylebase.h
     ${CMAKE_CURRENT_LIST_DIR}/src/lightstyle.cpp ${CMAKE_CURRENT_LIST_DIR}/src/lightstyle.h
     ${CMAKE_CURRENT_LIST_DIR}/src/darkstyle.cpp ${CMAKE_CURRENT_LIST_DIR}/src/darkstyle.h
     ${CMAKE_CURRENT_LIST_DIR}/src/stylecommon.cpp ${CMAKE_CURRENT_LIST_DIR}/src/stylecommon.h

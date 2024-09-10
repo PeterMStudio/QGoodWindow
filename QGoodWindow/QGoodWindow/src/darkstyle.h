@@ -26,12 +26,10 @@ SOFTWARE.
 #ifndef DARKSTYLE
 #define DARKSTYLE
 
-#include <QtCore>
-#include <QtGui>
-#include <QtWidgets>
+#include "windowstylebase.h"
 
 //\cond HIDDEN_SYMBOLS
-class DarkStyle : public QProxyStyle
+class DarkStyle : public WindowStyleBase
 {
     Q_OBJECT
 public:
@@ -41,24 +39,16 @@ public:
 
     ~DarkStyle();
 
-    QStyle *styleBase() const;
+    virtual void polish(QPalette &palette) override;
 
-    QIcon standardIcon(StandardPixmap standardPixmap, const QStyleOption *option, const QWidget *widget) const;
+    virtual void polish(QApplication *app) override;
 
-    void polish(QPalette &palette);
-
-    void polish(QApplication *app);
-
-    void unpolish(QApplication *app);
+    virtual void unpolish(QApplication *app) override;
 
 private:
     //Functions
     QStyle *baseStyle() const;
 
-    //Variables
-#ifdef Q_OS_WIN
-    QHash<StandardPixmap, QPixmap> m_hash_pixmap_cache;
-#endif
 };
 //\endcond
 

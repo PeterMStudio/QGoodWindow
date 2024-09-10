@@ -26,17 +26,12 @@ SOFTWARE.
 #include "darkstyle.h"
 #include "stylecommon.h"
 
-DarkStyle::DarkStyle() : DarkStyle(styleBase())
+DarkStyle::DarkStyle() : WindowStyleBase(styleBase())
 {
-#ifdef Q_OS_WIN
-    m_hash_pixmap_cache[SP_MessageBoxInformation] = StyleCommon::winStandardPixmap(SP_MessageBoxInformation);
-    m_hash_pixmap_cache[SP_MessageBoxWarning] = StyleCommon::winStandardPixmap(SP_MessageBoxWarning);
-    m_hash_pixmap_cache[SP_MessageBoxCritical] = StyleCommon::winStandardPixmap(SP_MessageBoxCritical);
-    m_hash_pixmap_cache[SP_MessageBoxQuestion] = StyleCommon::winStandardPixmap(SP_MessageBoxQuestion);
-#endif
+
 }
 
-DarkStyle::DarkStyle(QStyle *style) : QProxyStyle(style)
+DarkStyle::DarkStyle(QStyle *style) : WindowStyleBase(style)
 {
 
 }
@@ -44,37 +39,6 @@ DarkStyle::DarkStyle(QStyle *style) : QProxyStyle(style)
 DarkStyle::~DarkStyle()
 {
 
-}
-
-QStyle *DarkStyle::styleBase() const
-{
-    QStyle *base = QStyleFactory::create(QStringLiteral("Fusion"));
-    return base;
-}
-
-QIcon DarkStyle::standardIcon(StandardPixmap standardPixmap, const QStyleOption *option, const QWidget *widget) const
-{
-#ifdef Q_OS_WIN
-    switch (standardPixmap)
-    {
-    case SP_MessageBoxInformation:
-    case SP_MessageBoxWarning:
-    case SP_MessageBoxCritical:
-    case SP_MessageBoxQuestion:
-    {
-        QPixmap pixmap = m_hash_pixmap_cache.value(standardPixmap, QPixmap());
-
-        if (!pixmap.isNull())
-            return QIcon(pixmap);
-
-        break;
-    }
-    default:
-        break;
-    }
-#endif
-
-    return QProxyStyle::standardIcon(standardPixmap, option, widget);
 }
 
 void DarkStyle::polish(QPalette &palette)
